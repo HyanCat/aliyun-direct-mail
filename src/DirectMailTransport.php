@@ -8,16 +8,14 @@ use Illuminate\Mail\Transport\Transport;
 
 class DirectMailTransport extends Transport
 {
-	private $appKey;
-	private $appSecret;
-
 	protected $acsClient;
 
-	public function __construct($appKey, $appSecret)
+	public $accountAddress;
+	public $accountName;
+
+	public function __construct($region, $appKey, $appSecret)
 	{
-		$this->appKey    = $appKey;
-		$this->appSecret = $appSecret;
-		$iClientProfile  = \DefaultProfile::getProfile("cn-beijing", $this->appKey, $this->appSecret);
+		$iClientProfile  = \DefaultProfile::getProfile($region, $appKey, $appSecret);
 		$this->acsClient = new \DefaultAcsClient($iClientProfile);
 	}
 
@@ -29,7 +27,7 @@ class DirectMailTransport extends Transport
 	private function sendSingle(\Swift_Mime_Message $message)
 	{
 		$request = new DM\SingleSendMailRequest();
-		$request->setAccountName($this->getFirstAddress($message->getFrom()));
+		$request->setAccountName($this->getFirstAddress($message->getFrom()) ?: $this->accountAddress);
 		$request->setAddressType(1);
 		$request->setReplyToAddress('true');
 		$request->setToAddress($this->getFirstAddress($message->getTo()));
