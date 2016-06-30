@@ -49,6 +49,8 @@ class SingleSendMailRequest extends \RpcAcsRequest
 
 	private  $textBody;
 
+	private  $fromAlias;
+
 	public function getOwnerId() {
 		return $this->ownerId;
 	}
@@ -146,6 +148,15 @@ class SingleSendMailRequest extends \RpcAcsRequest
 	public function setTextBody($textBody) {
 		$this->textBody = $textBody;
 		$this->queryParameters["TextBody"]=$textBody;
+	}
+
+	public function getFromAlias() {
+		return $this->fromAlias;
+	}
+
+	public function setFromAlias($fromAlias) {
+		$this->fromAlias = $fromAlias;
+		$this->queryParameters["FromAlias"]=$fromAlias;
 	}
 	
 }
