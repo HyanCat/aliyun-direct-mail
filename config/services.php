@@ -6,8 +6,8 @@ return [
 		'app_secret' => env('DIRECT_MAIL_APP_SECRET'),
 		'region'     => 'cn-beijing',
 		'account'    => [
-			'name'    => env('DIRECT_MAIL_ACCOUNT_NAME'),
-			'address' => env('DIRECT_MAIL_ACCOUNT_ADDRESS'),
+			'alias' => env('DIRECT_MAIL_ACCOUNT_ALIAS'),
+			'name' => env('DIRECT_MAIL_ACCOUNT_NAME'),
 		]
 	],
 ];
