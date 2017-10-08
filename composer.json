@@ -16,5 +16,12 @@
         "psr-4": {
             "HyanCat\\DirectMail\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HyanCat\\DirectMail\\AliyunDirectMailServiceProvider"
+            ]
+        }
     }
 }
