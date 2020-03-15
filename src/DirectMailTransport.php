@@ -69,6 +69,6 @@ class DirectMailTransport extends Transport
     // 多个地址使用逗号分隔
     protected function getToAddress(\Swift_Mime_SimpleMessage $message)
     {
-        return join(',', array_keys($message->getTo()));
+        return implode(',', array_keys($message->getTo()));
     }
 }

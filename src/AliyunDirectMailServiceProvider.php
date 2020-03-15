@@ -1,14 +1,16 @@
 <?php
+
 namespace HyanCat\DirectMail;
 
-use Illuminate\Mail\TransportManager;
+use Illuminate\Mail\MailManager;
 use Illuminate\Support\ServiceProvider;
 
-class AliyunDirectMailServiceProvider extends ServiceProvider {
-    public function register() {
+class AliyunDirectMailServiceProvider extends ServiceProvider
+{
+    public function register()
+    {
         $this->mergeConfigFrom(dirname(__DIR__) . '/config/services.php', 'services');
-
-        $this->app->resolving('swift.transport', function (TransportManager $transportManager) {
+        $this->app->resolving('mail.manager', function (MailManager $transportManager) {
             $transportManager->extend('directmail', function () {
                 $region = config('services.directmail.region');
                 $appKey = config('services.directmail.app_key');
